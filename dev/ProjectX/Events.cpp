@@ -9,8 +9,9 @@ void Events::mainMenu()
 	int choice = 0;
 
 	do {
+		std::cout << "Main Menu:\n" << std::endl;
 		choice = ui.DisplayMenuAndPromptUser(mainMenuChoices);
-
+		
 		switch (choice) {
 		case 1: // Starts a new Game
 			break;
