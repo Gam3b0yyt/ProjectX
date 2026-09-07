@@ -7,12 +7,11 @@ class UI
 {
 private:
 	void ClearScreen();
-
-	void PressEnterToContinue();
+	
 
 
 public:
 	int DisplayMenuAndPromptUser(std::vector<std::string>& menuOptions);
-
+	void PressEnterToContinue();
 };
 

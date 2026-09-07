@@ -2,7 +2,9 @@
 
 void Events::settings() 
 {
-	std::cout << "Settings: ";
+	std::cout << "Settings: \n";
+	ui.PressEnterToContinue();
+	
 }
 
 void Events::mainMenu()

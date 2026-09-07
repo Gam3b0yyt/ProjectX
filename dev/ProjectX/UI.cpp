@@ -28,13 +28,15 @@ int UI::DisplayMenuAndPromptUser(std::vector<std::string>& menuOptions)
 		getline(std::cin, tempChoice);
 		choice = std::stoi(tempChoice);
 
-		if (choice < 1 || choice > menuOptions.size());
+		if (choice < 1 || choice > menuOptions.size())
 		{
 			std::cout << "Invalid menu selection. Please try again.\n\n";
 
 			PressEnterToContinue();
 		}
 
-		return choice;
+		
 	} while (choice < 1 || choice > menuOptions.size());
+	
+	return choice;
 }
