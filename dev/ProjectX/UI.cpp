@@ -17,6 +17,7 @@ int UI::DisplayMenuAndPromptUser(std::vector<std::string>& menuOptions)
 	std::string tempChoice = "";
 
 	do {
+		ClearScreen();
 
 		for (int i = 0; i < menuOptions.size(); i++) {
 			std::cout << "[" + std::to_string(i + 1) + "] " << menuOptions[i] << std::endl;

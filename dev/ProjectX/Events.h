@@ -8,6 +8,8 @@ private:
 
 public:
 
+	void settings();
+
 	void mainMenu();
 
 };
