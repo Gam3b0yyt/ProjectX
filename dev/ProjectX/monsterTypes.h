@@ -2,6 +2,7 @@
 
 enum class monsterType 
 {
+	NONE,
 	BEAST,
 	CELESTIAL,
 	DRAGON,
