@@ -11,13 +11,16 @@ void UI::PressEnterToContinue()
 	std::cin.get();
 }
 
-int UI::DisplayMenuAndPromptUser(std::vector<std::string>& menuOptions)
+int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& menuOptions)
 {
 	int choice = 0;
 	std::string tempChoice = "";
+	std::string title = _title;
 
 	do {
 		ClearScreen();
+
+		std::cout << title << std::endl;
 
 		for (int i = 0; i < menuOptions.size(); i++) {
 			std::cout << "[" + std::to_string(i + 1) + "] " << menuOptions[i] << std::endl;

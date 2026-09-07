@@ -11,7 +11,7 @@ private:
 
 
 public:
-	int DisplayMenuAndPromptUser(std::vector<std::string>& menuOptions);
+	int DisplayMenuAndPromptUser(std::string title,std::vector<std::string>& menuOptions);
 	void PressEnterToContinue();
 };
 

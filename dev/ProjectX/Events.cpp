@@ -16,8 +16,7 @@ void Events::mainMenu()
 	int choice = 0;
 
 	do {
-		std::cout << "Main Menu:\n" << std::endl;
-		choice = ui.DisplayMenuAndPromptUser(mainMenuChoices);
+		choice = ui.DisplayMenuAndPromptUser("Main Menu: ", mainMenuChoices);
 
 		switch (choice) {
 		case 1: // Starts a new Game
