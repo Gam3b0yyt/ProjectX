@@ -139,11 +139,14 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProjectX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="characterTypes.h" />
+    <ClInclude Include="Monster.h" />
+    <ClInclude Include="monsterTypes.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
