@@ -103,10 +103,45 @@ void Events::newGame()
 	player = Player();
 	storyProgress = 0;
 	CreatePlayer();
+	gameMenu();
 
 }
 
 void Events::gameMenu()
 {
+	bool inGame = true;
+	std::vector<std::string> choices = { "Explore", "Shop", "Status", "Save Game", "Return to Main Menu" };
 
+	while (inGame) 
+	{
+		ui.clearScreenForGame();
+		std::cout << "===== WORLD =====\n";
+		std::cout << "Hero: " << player.getName() << "  Lv. " << player.getLevel() << "\n";
+		std::cout << "HP: " << player.getHealth();
+		std::cout << "   MP: " << player.getMana() << "\n";
+
+		int choice = ui.DisplayMenuAndPromptUserWithoutClearing("What will you do?", choices);
+		switch (choice)
+		{
+		case 1: // Explore
+
+			break;
+		case 2: // Shop
+
+			break;
+		case 3: // Save game (FOR LATER)
+
+			break;
+		case 4: // Stats
+
+			break;
+		case 5: // Go back to main menu
+			inGame = false;
+			break;
+
+		default:
+			break;
+
+		}
+	}
 }
