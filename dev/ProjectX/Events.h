@@ -14,6 +14,10 @@ private:
 
 public:
 
+	void Intro();
+
+	void Title();
+
 	void settings();
 
 	void mainMenu();

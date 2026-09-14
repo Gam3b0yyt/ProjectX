@@ -1,5 +1,28 @@
 #include "Events.h"
 
+void Events::Intro()
+{
+	ui.messageBox("Long ago... In a world like no other...");
+	ui.messageBox("There were two brothers who lived in harmony");
+	ui.messageBox("But when their father died, everything changed");
+	ui.messageBox("The older brother Onyx, got jealous that his younger brother would get the throne.");
+	ui.messageBox("Full of rage the older brother stabbed his brother in back...");
+	ui.messageBox("He launched him out of the kingdom, and thought he would never see him again");
+	ui.messageBox("The younger brother landed somewhere in the forest...");
+	ui.messageBox("Luckily someone found him and healed his wounds");
+	ui.messageBox("Suddenly the younger Brother woke up...");
+
+}
+
+void Events::Title()
+{
+	ui.clearScreenForGame();
+	std::cout << "====================================\n";
+	std::cout << "          PROJECT X: RPG             \n";
+	std::cout << "           by: Jose Ruiz             \n";
+	std::cout << "====================================\n\n";
+	ui.pause();
+}
 
 void Events::settings() 
 {
