@@ -43,6 +43,7 @@ int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& m
 			PressEnterToContinue();
 		}
 
+		choice = std::stoi(tempChoice);
 		
 	} while (choice < 1 || choice > menuOptions.size());
 	
@@ -100,5 +101,10 @@ void UI::messageBox(std::string message)
 void UI::clearScreenForGame()
 {
 	ClearScreen();
+}
+
+void UI::pause()
+{
+	PressEnterToContinue();
 }
 

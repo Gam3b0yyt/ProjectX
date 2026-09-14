@@ -110,7 +110,7 @@ void Events::newGame()
 void Events::gameMenu()
 {
 	bool inGame = true;
-	std::vector<std::string> choices = { "Explore", "Shop", "Status", "Save Game", "Return to Main Menu" };
+	std::vector<std::string> choices = { "Explore", "Shop", "Save Game", "Status", "Return to Main Menu" };
 
 	while (inGame) 
 	{
@@ -133,7 +133,7 @@ void Events::gameMenu()
 
 			break;
 		case 4: // Stats
-
+			showStats();
 			break;
 		case 5: // Go back to main menu
 			inGame = false;
@@ -144,4 +144,19 @@ void Events::gameMenu()
 
 		}
 	}
+}
+
+void Events::showStats()
+{
+	ui.clearScreenForGame();
+	std::cout << "===== CHARACTER STATS =====\n\n";
+	std::cout << "Name: " << player.getName() << "\n";
+	std::cout << "Level: " << player.getLevel() << "\n";
+	std::cout << "EXP: " << player.getExperience() << "" << player.getLevel() * 100 << "\n";
+	std::cout << "HP: " << player.getHealth() << "\n";
+	std::cout << "MP: " << player.getMana() << "\n";
+	std::cout << "Attack: " << player.getAttack() << "\n";
+	std::cout << "Defense: " << player.getDefense() << "\n";
+	std::cout << "Gold: " << player.getMoney() << "\n\n";
+	ui.pause();
 }

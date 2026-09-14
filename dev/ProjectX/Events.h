@@ -23,5 +23,7 @@ public:
 
 	void gameMenu();
 
+	void showStats();
+
 };
 
