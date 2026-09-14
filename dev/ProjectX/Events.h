@@ -12,5 +12,7 @@ public:
 
 	void mainMenu();
 
+	void CreatePlayer();
+
 };
 

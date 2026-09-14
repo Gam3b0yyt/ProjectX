@@ -1,9 +1,10 @@
 #include "Events.h"
 
+
 void Events::settings() 
 {
 	std::cout << "Settings: \n";
-	ui.PressEnterToContinue();
+
 	
 }
 
@@ -20,6 +21,7 @@ void Events::mainMenu()
 
 		switch (choice) {
 		case 1: // Starts a new Game
+			
 			break;
 		case 2: // Loads the save file 
 			break;
@@ -35,4 +37,9 @@ void Events::mainMenu()
 	} while (choice != 4);
 
 
+}
+
+void Events::CreatePlayer()
+{
+	
 }

@@ -3,26 +3,17 @@
 Player::Player()
 {
 	name = "Lynx";
-
 	money = 1500;
+	characterType = characterTypes::CLERIC;
 
-    characterType = characterTypes::CLERIC;
+
 }
 
-std::string& Player::getName()
-{
-	return name;
-}
+std::string& Player::getName() {return name;}
 
-int Player::getMoney() const
-{
-	return money;
-}
+int Player::getMoney() const {return money;}
 
-characterTypes Player::getType()
-{
-	return characterType;
-}
+characterTypes Player::getType() { return characterType;}
 
 void Player::setName(const std::string& newName)
 {

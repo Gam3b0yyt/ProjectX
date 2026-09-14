@@ -11,6 +11,11 @@ void UI::PressEnterToContinue()
 	std::cin.get();
 }
 
+void UI::Border()
+{
+	std::cout << "==================================================";
+}
+
 int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& menuOptions)
 {
 	int choice = 0;
@@ -42,4 +47,19 @@ int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& m
 	} while (choice < 1 || choice > menuOptions.size());
 	
 	return choice;
+}
+
+void UI::messageBox(std::string message)
+{
+	ClearScreen();
+	Border();
+	std::cout << "\n";
+	std::cout << "\n";
+	std::cout << message << std::endl;
+	std::cout << "\n";
+	std::cout << "\n";
+	Border();
+	std::cout << "\n";
+	PressEnterToContinue();
+
 }
