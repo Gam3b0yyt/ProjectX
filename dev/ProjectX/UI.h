@@ -13,6 +13,7 @@ private:
 public:
 	int DisplayMenuAndPromptUser(std::string title,std::vector<std::string>& menuOptions);
 	void messageBox(std::string message);
+	void clearScreenForGame();
 	
 };
 

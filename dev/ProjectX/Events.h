@@ -1,10 +1,15 @@
 #pragma once
 #include "UI.h"
+#include "Player.h"
 class Events
 {
 private:
 
 	UI ui;
+
+	Player player;
+	int storyProgress;
+	
 
 public:
 
@@ -13,6 +18,10 @@ public:
 	void mainMenu();
 
 	void CreatePlayer();
+
+	void newGame();
+
+	void gameMenu();
 
 };
 

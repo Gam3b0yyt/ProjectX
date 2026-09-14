@@ -63,3 +63,9 @@ void UI::messageBox(std::string message)
 	PressEnterToContinue();
 
 }
+
+void UI::clearScreenForGame()
+{
+	ClearScreen();
+}
+
