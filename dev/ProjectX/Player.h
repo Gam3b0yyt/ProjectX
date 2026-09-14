@@ -31,6 +31,8 @@ public:
     int getMana() const;
     int getAttack() const;
     int getDefense() const;
+    
+    int getMorale();
 
     void setName(const std::string& newName);
     void setCharacterType(characterTypes newType);
@@ -41,6 +43,8 @@ public:
     void setMana(int value);
     void setAttack(int value);
     void setDefense(int value);
+
+    void setMorale(int value);
 
 
 

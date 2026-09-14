@@ -1,6 +1,7 @@
 #pragma once
 #include "UI.h"
 #include "Player.h"
+#include <random>
 class Events
 {
 private:
@@ -24,6 +25,10 @@ public:
 	void gameMenu();
 
 	void showStats();
+
+	void finalBossCheck();
+
+	void explore();
 
 };
 

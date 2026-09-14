@@ -29,6 +29,8 @@ int Player::getMana() const { return mana; }
 int Player::getAttack() const { return attack; }
 int Player::getDefense() const { return defense; }
 
+int Player::getMorale() {return morale;}
+
 
 void Player::setName(const std::string& newName)
 {
@@ -42,3 +44,5 @@ void Player::setHealth(int value) { health = value; }
 void Player::setMana(int value) { mana = value; }
 void Player::setAttack(int value) { attack = value; }
 void Player::setDefense(int value) { defense = value; }
+
+void Player::setMorale(int value) { morale = morale + value;}

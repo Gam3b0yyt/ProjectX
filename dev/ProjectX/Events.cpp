@@ -124,7 +124,7 @@ void Events::gameMenu()
 		switch (choice)
 		{
 		case 1: // Explore
-
+			finalBossCheck();
 			break;
 		case 2: // Shop
 
@@ -159,4 +159,74 @@ void Events::showStats()
 	std::cout << "Defense: " << player.getDefense() << "\n";
 	std::cout << "Gold: " << player.getMoney() << "\n\n";
 	ui.pause();
+}
+
+void Events::finalBossCheck()
+{
+	if (storyProgress == 10 && player.getMorale() == 100)
+	{
+		//starts the true final boss and will trigger the true ending
+	}
+	else if (storyProgress == 10)
+	{
+		//starts final boss and will trigger either ending
+	}
+	else
+	{
+		explore();
+	}
+	
+
+
+}
+
+void Events::explore()
+{
+	ui.messageBox("You travel deeper into the unknown...");
+	int eventRoll = std::rand() % 100;
+	if (eventRoll < 60)
+	{
+		// This will trigger an enemy and start to fight
+	}
+	else if (eventRoll < 85)
+	{
+		switch (std::rand() % 4)
+		{
+		case 0:
+		{
+			ui.messageBox("An old Lady appears out of nowhere...");
+			ui.messageBox("She ask if you could help her with some groceries");
+
+			std::vector<std::string> yesOrNo = { "Yes", "No", };
+			int choice = 0;
+			choice = ui.DisplayMenuAndPromptUser("Will you help the lady?", yesOrNo);
+			if (choice == 1)
+			{
+				ui.messageBox("You decide to help the Old Lady");
+				ui.messageBox("She's grateful for your help and gives you something");
+
+				int gold = player.getMoney() + std::rand() % 1000;
+				player.setMoney(gold);
+				player.setMorale(20);
+
+				ui.messageBox("She gave you some gold... How nice");
+			}
+			else
+			{
+				//batlle dragon
+			}
+			break;
+		}
+
+		case 1:
+
+		case 2:
+
+		case 3:
+
+		case 4:
+			break;
+		}
+
+	}
 }
