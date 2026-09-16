@@ -44,9 +44,9 @@ int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& m
 		}
 
 		choice = std::stoi(tempChoice);
-		
+
 	} while (choice < 1 || choice > menuOptions.size());
-	
+
 	return choice;
 }
 
@@ -57,7 +57,7 @@ int UI::DisplayMenuAndPromptUserWithoutClearing(std::string _title, std::vector<
 	std::string title = _title;
 
 	do {
-		
+
 
 		std::cout << title << std::endl;
 
