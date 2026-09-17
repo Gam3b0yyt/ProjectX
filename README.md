@@ -34,7 +34,23 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 2
 
-My next stand up will go here...
+**⚙️ Overview**  
+This week I finished the Explore feature  and added the Intro/Title card to the menu , building on top of the Player, Monster, and Main Menu classes from last week. The game now has a working intro/title sequence and an Explore option that actually does something instead of being an empty menu stub.
+
+**🌵 Challenges**  
+Some challenges I had was was the random event logic to trigger correctly, as well as structuring the Explore option so it could hook into the monster class later. I addressed it by breaking the feature into smaller sub-task and testing each event branch individually before combine it.
+
+**🏆 Accomplishments**  
+Getting the Explore feature fully working was the big level-up this week — it's the first system that ties together multiple classes (Player state, random events, and setting up for combat) instead of just being isolated menu screens.
+
+**🔮 Next Steps**  
+Before Week 3, I'm prioritizing:
+
+- Creating a method to generate a "Random Monster" (#8)
+- Building out the actual battle system (#9)
+- Finishing the remaining random events (#11)
+- Adding music and slow-scroll dialogue text (#10), lower priority in the Backlog
+
 
 ### Week 3
 
