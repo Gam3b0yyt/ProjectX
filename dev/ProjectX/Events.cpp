@@ -231,6 +231,7 @@ void Events::explore()
 				int gold = player.getMoney() + std::rand() % 1000;
 				player.setMoney(gold);
 				player.setMorale(20);
+				storyProgress++;
 
 				ui.messageBox("She gave you some gold... How nice");
 			}
@@ -251,5 +252,17 @@ void Events::explore()
 			break;
 		}
 
+	}
+}
+
+Monster Events::createRandomMonster() const
+{
+	switch (std::rand() % 5)
+	{
+	case 0: return Monster("Forest Slime", monsterType::BEAST, 45, 9, 2, 30);
+	case 1: return Monster("Goblin", monsterType::BEAST, 60, 12, 4, 40);
+	case 2: return Monster("Dark Plant", monsterType::PLANT, 70, 13, 5, 50);
+	case 3: return Monster("Fire Elemental", monsterType::ELEMENTAL, 85, 16, 6, 65);
+	default: return Monster("Fallen Celestial", monsterType::CELESTIAL, 100, 18, 8, 80);
 	}
 }

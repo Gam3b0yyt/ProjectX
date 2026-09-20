@@ -2,6 +2,7 @@
 #include "UI.h"
 #include "Player.h"
 #include <random>
+#include "Monster.h"
 class Events
 {
 private:
@@ -34,5 +35,6 @@ public:
 
 	void explore();
 
+	Monster createRandomMonster() const;
 };
 
