@@ -94,17 +94,17 @@ void Events::CreatePlayer()
 	switch(player.getType())
 	{
     case characterTypes::KNIGHT:
-		player.setHealth(130); player.setAttack(16); player.setDefense(9); player.setMana(25); break;
+		player.setMaxHealth(130); player.setHealth(130); player.setAttack(16); player.setDefense(9); player.setMaxMana(25); player.setMana(25); break;
 	case characterTypes::SORCERER:
-		player.setHealth(80); player.setAttack(12); player.setDefense(3); player.setMana(100); break;
+		player.setMaxHealth(80); player.setHealth(80); player.setAttack(12); player.setDefense(3); player.setMaxMana(100); player.setMana(100); break;
 	case characterTypes::BARBARIAN:
-		player.setHealth(150); player.setAttack(20); player.setDefense(4); player.setMana(20); break;
+		player.setMaxHealth(150); player.setHealth(150); player.setAttack(20); player.setDefense(4); player.setMaxMana(20); player.setMana(20); break;
 	case characterTypes::MONK:
-		player.setHealth(105); player.setAttack(17); player.setDefense(6); player.setMana(45); break;
+		player.setMaxHealth(105); player.setHealth(105); player.setAttack(17); player.setDefense(6); player.setMaxMana(45); player.setMana(45); break;
 	case characterTypes::FIGHTER:
-		player.setHealth(115); player.setAttack(18); player.setDefense(7); player.setMana(30); break;
+		player.setMaxHealth(115); player.setHealth(115); player.setAttack(18); player.setDefense(7); player.setMaxMana(30); player.setMana(30); break;
 	case characterTypes::CLERIC:
-		player.setHealth(95); player.setAttack(13); player.setDefense(5); player.setMana(75); break;
+		player.setMaxHealth(95); player.setHealth(95); player.setAttack(13); player.setDefense(5); player.setMaxMana(75); player.setMana(75); break;
 	}
 
 	ui.messageBox("Ah I see...");
@@ -210,6 +210,8 @@ void Events::explore()
 	if (eventRoll < 60)
 	{
 		// This will trigger an enemy and start to fight
+		Monster monster = createRandomMonster();
+		battle(monster);
 	}
 	else if (eventRoll < 85)
 	{
@@ -264,5 +266,23 @@ Monster Events::createRandomMonster() const
 	case 2: return Monster("Dark Plant", monsterType::PLANT, 70, 13, 5, 50);
 	case 3: return Monster("Fire Elemental", monsterType::ELEMENTAL, 85, 16, 6, 65);
 	default: return Monster("Fallen Celestial", monsterType::CELESTIAL, 100, 18, 8, 80);
+	}
+}
+
+void Events::battle(Monster enemy)
+{
+	while (player.isAlive() && enemy.isAlive())
+	{
+		ui.clearScreenForGame();
+		std::cout << "====================================\n";
+		std::cout << "              BATTLE                 \n";
+		std::cout << "====================================\n\n";
+		std::cout << player.getName() << " HP " << player.getHealth() << "/" << player.getMaxHealth()
+			<< "  MP " << player.getMana() << "/" << player.getMaxMana() << "\n";
+		std::cout << enemy.getName() << " HP " << enemy.getHealth() << "/" << enemy.getMaxHealth() << "\n\n";
+
+		
+
+	
 	}
 }

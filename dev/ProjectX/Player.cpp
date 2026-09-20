@@ -8,7 +8,9 @@ Player::Player()
 
     level = 1;
     experience = 0;
+    maxHealth = 100;
     health = 100;
+    maxMana = 50;
     mana = 50;
     attack = 15;
     defense = 5;
@@ -29,6 +31,10 @@ int Player::getMana() const { return mana; }
 int Player::getAttack() const { return attack; }
 int Player::getDefense() const { return defense; }
 
+int Player::getMaxHealth() const { return maxHealth;}
+
+int Player::getMaxMana() const { return maxMana; }
+
 int Player::getMorale() {return morale;}
 
 
@@ -45,4 +51,10 @@ void Player::setMana(int value) { mana = value; }
 void Player::setAttack(int value) { attack = value; }
 void Player::setDefense(int value) { defense = value; }
 
+void Player::setMaxHealth(int value) { maxHealth = value; }
+void Player::setMaxMana(int value) { maxMana = value; }
+
 void Player::setMorale(int value) { morale = morale + value;}
+
+bool Player::isAlive() const { return health > 0; }
+void Player::fullRestore() { health = maxHealth; mana = maxMana; }

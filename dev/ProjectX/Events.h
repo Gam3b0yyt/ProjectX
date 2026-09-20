@@ -10,7 +10,8 @@ private:
 	UI ui;
 
 	Player player;
-	int storyProgress;
+	int storyProgress = 0;
+
 	
 
 public:
@@ -36,5 +37,7 @@ public:
 	void explore();
 
 	Monster createRandomMonster() const;
+
+	void battle(Monster enemy);
 };
 
