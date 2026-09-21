@@ -281,8 +281,96 @@ void Events::battle(Monster enemy)
 			<< "  MP " << player.getMana() << "/" << player.getMaxMana() << "\n";
 		std::cout << enemy.getName() << " HP " << enemy.getHealth() << "/" << enemy.getMaxHealth() << "\n\n";
 
-		
+		playersTurn(enemy);
 
+		if (enemy.isAlive()) monsterTurn(enemy);
+
+		if (player.isAlive())
+		{
+			int reward = enemy.getExperienceReward();
+			player.setExperience(player.getExperience() + reward);
+			player.setMoney(player.getMoney() + reward);
+			std::cout << "\nYou defeated " << enemy.getName() << "!\n";
+			std::cout << "EXP +" << reward << "   Gold +" << reward << "\n";
+			++storyProgress;
+
+			while (player.getExperience() >= player.getLevel() * 100)
+			{
+				if (player.levelUP())
+					std::cout << "LEVEL UP! You are now level " << player.getLevel() << "!\n";
+			}
+			ui.pause();
+		}
+		else
+		{
+			std::cout << "\nYou were defeated...\n";
+			player.fullRestore();
+			std::cout << "You awaken at the last safe area.\n";
+			ui.pause();
+		}
 	
 	}
+}
+
+void Events::playersTurn(Monster& enemy)
+{
+	std::vector<std::string> actions = { "Attack", "Power Strike (15 MP)", "Heal", "Use Health Potion", "Use Mana Potion" };
+	int choice = ui.DisplayMenuAndPromptUserWithoutClearing("What will you do?", actions);
+
+	int damage = 0;
+	int crit = 1;
+	int critPercent = (std::rand() % 100) ;
+
+	if (critPercent == 20) {
+		crit = 2;
+	}
+
+	switch (choice)
+	{
+	case 1:
+		damage = ((player.getAttack() * crit) - enemy.getDefense());
+		enemy.takeDamage(damage);
+		std::cout << "You attack for " << damage << " damage!\n";
+		break;
+	case 2:
+		if (player.spendMana(15))
+		{
+			damage = ((player.getAttack() * (crit * crit)) - enemy.getDefense());
+			enemy.takeDamage(damage);
+			std::cout << "Power Strike deals " << damage << " damage!\n";
+		}
+		else
+			std::cout << "Not enough MP!\n";
+		break;
+	case 3:
+		if (player.spendMana(10))
+		{
+			player.heal(30);
+			std::cout << "You restore 30 HP.\n";
+		}
+		else
+			std::cout << "Not enough MP!\n";
+		break;
+	case 4:
+		break;
+	case 5:
+		break;
+	default:
+		break;
+	}
+	ui.pause();
+}
+
+void Events::monsterTurn(Monster& enemy)
+{
+	int crit = 1;
+	int critPercent = (std::rand() % 100);
+
+	if (critPercent == 20) {
+		crit = 2;
+	}
+	int damage = ((player.getAttack() * crit) - enemy.getDefense());
+	player.setHealth(player.getHealth() - damage);
+	std::cout << enemy.getName() << " attacks you for " << damage << " damage!\n";
+	ui.pause();
 }

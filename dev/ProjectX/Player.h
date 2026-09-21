@@ -58,6 +58,10 @@ public:
     bool isAlive() const;
     void fullRestore();
 
+    bool spendMana(int amount);
+    void heal(int amount);
+
+    bool levelUP();
 	
 
 

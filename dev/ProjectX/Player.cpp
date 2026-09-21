@@ -58,3 +58,30 @@ void Player::setMorale(int value) { morale = morale + value;}
 
 bool Player::isAlive() const { return health > 0; }
 void Player::fullRestore() { health = maxHealth; mana = maxMana; }
+
+bool Player::spendMana(int amount)
+{
+    if (amount < 0 || mana < amount) return false;
+    mana -= amount;
+    return true;
+}
+
+void Player::heal(int amount)
+{
+    health = std::min(maxHealth, health + std::max(0, amount));
+}
+
+bool Player::levelUP()
+{
+    int needed = level * 100;
+    if (experience < needed) return false;
+
+    experience -= needed;
+    ++level;
+    maxHealth += 20;
+    maxMana += 10;
+    attack += 4;
+    defense += 2;
+    fullRestore();
+    return true;
+}

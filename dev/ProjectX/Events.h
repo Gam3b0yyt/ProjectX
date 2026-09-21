@@ -39,5 +39,8 @@ public:
 	Monster createRandomMonster() const;
 
 	void battle(Monster enemy);
+	void playersTurn(Monster& enemy);
+	void monsterTurn(Monster& enemy);
+
 };
 
