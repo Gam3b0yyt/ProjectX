@@ -240,6 +240,9 @@ void Events::explore()
 			else
 			{
 				//batlle dragon
+				Monster monster = Monster("Forest Slime", monsterType::DRAGON, 250, 25, 50, 300);
+				battle(monster);
+				storyProgress++;
 			}
 			break;
 		}
