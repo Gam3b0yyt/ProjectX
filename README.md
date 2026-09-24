@@ -54,7 +54,21 @@ Before Week 3, I'm prioritizing:
 
 ### Week 3
 
-Stay tuned, this stand up is coming soon...
+⚙️ Overview - This week I built out the combat system. A full turn-based battle loop with attack, power strike, healing, and monster stat-checking and finished all four random story events, three of which were previously empty stubs. Random encounters now pull from a pool of 5 monsters instead of nothing.
+<br>
+**🛠️ Improvements**  
+Fixed a crash bug where typing a non-numeric character into any menu would throw an unhandled exception; menu input is now validated as digits-only before conversion. Also fixed a display bug in the stats screen where EXP and HP/MP numbers were printing with no separator.
+<br>
+🌵 Challenges - What problems did I have & how I'm addressing them
+<br>
+🏆 Accomplishments - Getting a complete combat loop working end-to-end turns, damage formulas, mana costs, win/loss states, and rewards was the biggest level-up this week, since it ties together the Player and Monster classes for the first time instead of them existing independently.
+<br>
+🔮 Next Steps - Before Week 4, I plan to:
+
+- Reduce duplication between the two menu-display functions in `UI.cpp`
+- Clean up `Monster::isAlive()` back to a simpler one-line return
+- add a shop and inventory, as well as to add a final boss and an ending
+
 
 ### Week 4
 
