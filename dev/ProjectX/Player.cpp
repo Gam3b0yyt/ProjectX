@@ -56,7 +56,17 @@ void Player::setMaxMana(int value) { maxMana = value; }
 
 void Player::setMorale(int value) { morale = morale + value;}
 
-bool Player::isAlive() const { return health > 0; }
+bool Player::isAlive() const
+{
+    if (health > 0)
+    {
+        return true;
+    }
+    else if (health <= 0)
+    {
+        return false;
+    }
+}
 void Player::fullRestore() { health = maxHealth; mana = maxMana; }
 
 bool Player::spendMana(int amount)

@@ -10,6 +10,7 @@ private:
 	UI ui;
 
 	Player player;
+	
 	int storyProgress = 0;
 
 	
@@ -39,8 +40,12 @@ public:
 	Monster createRandomMonster() const;
 
 	void battle(Monster enemy);
+	void battleEvent(Monster enemy);
 	void playersTurn(Monster& enemy);
 	void monsterTurn(Monster& enemy);
 
+	void showMonsterStats(Monster enemy);
+
+	void StoryEvents();
 };
 
