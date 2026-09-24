@@ -15,4 +15,14 @@ int Monster::getAttack() const { return attack; }
 int Monster::getDefense() const { return defense; }
 int Monster::getExperienceReward() const { return experienceReward; }
 void Monster::takeDamage(int amount) { health = health - amount; }
-bool Monster::isAlive() const { return health > 0; }
+bool Monster::isAlive() const 
+{ 
+	if (health > 0)
+	{
+		return true;
+	}
+	else if (health <= 0)
+	{
+		return false;
+	}
+}

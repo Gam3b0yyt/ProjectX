@@ -34,7 +34,28 @@ int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& m
 		std::cout << "\nChoice: ";
 
 		getline(std::cin, tempChoice);
-		choice = std::stoi(tempChoice);
+
+		bool isValidNumber = true;
+
+
+		if (tempChoice.length() == 0) {
+			isValidNumber = false;
+		}
+
+		for (int i = 0; i < tempChoice.length(); i++) {
+			if (tempChoice[i] < '0' || tempChoice[i] > '9') {
+				isValidNumber = false;
+				break;
+			}
+		}
+		if (isValidNumber)
+		{
+			choice = std::stoi(tempChoice);
+		}
+		else {
+			choice = 0;
+		}
+
 
 		if (choice < 1 || choice > menuOptions.size())
 		{
@@ -43,8 +64,7 @@ int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& m
 			PressEnterToContinue();
 		}
 
-		choice = std::stoi(tempChoice);
-
+		
 	} while (choice < 1 || choice > menuOptions.size());
 
 	return choice;
@@ -68,7 +88,28 @@ int UI::DisplayMenuAndPromptUserWithoutClearing(std::string _title, std::vector<
 		std::cout << "\nChoice: ";
 
 		getline(std::cin, tempChoice);
-		choice = std::stoi(tempChoice);
+		
+		bool isValidNumber = true;
+
+
+		if (tempChoice.length() == 0) {
+			isValidNumber = false;
+		}
+
+		for (int i = 0; i < tempChoice.length(); i++) {
+			if (tempChoice[i] < '0' || tempChoice[i] > '9') {
+				isValidNumber = false;
+				break;
+			}
+		}
+		if (isValidNumber)
+		{
+			choice = std::stoi(tempChoice);
+		}
+		else {
+			choice = 0;
+		}
+
 
 		if (choice < 1 || choice > menuOptions.size())
 		{

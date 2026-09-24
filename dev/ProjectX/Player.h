@@ -16,6 +16,9 @@ private:
     int attack;
     int defense;
 
+    int maxHealth;
+    int maxMana;
+
     int morale; 
  
 
@@ -31,6 +34,9 @@ public:
     int getMana() const;
     int getAttack() const;
     int getDefense() const;
+
+    int getMaxHealth() const;
+    int getMaxMana() const;
     
     int getMorale();
 
@@ -44,11 +50,18 @@ public:
     void setAttack(int value);
     void setDefense(int value);
 
+    void setMaxHealth(int value);
+    void setMaxMana(int value);
+
     void setMorale(int value);
 
+    bool isAlive() const;
+    void fullRestore();
 
+    bool spendMana(int amount);
+    void heal(int amount);
 
-
+    bool levelUP();
 	
 
 
