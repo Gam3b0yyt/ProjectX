@@ -1,5 +1,6 @@
 #include "Events.h"
 
+
 void Events::Intro()
 {
 	ui.messageBox("Long ago... In a world like no other...");
@@ -147,17 +148,25 @@ void Events::gameMenu()
 		switch (choice)
 		{
 		case 1: // Explore
+		{
 			finalBossCheck();
 			break;
+		}
 		case 2: // Shop
+		{
+			Shop shop(player, ui);
+			shop.open();
 
 			break;
+		}
 		case 3: // Save game (FOR LATER)
 
 			break;
 		case 4: // Stats
+		{
 			showStats();
 			break;
+		}
 		case 5: // Go back to main menu
 			inGame = false;
 			break;
@@ -186,7 +195,7 @@ void Events::showStats()
 
 void Events::finalBossCheck()
 {
-	if (storyProgress == 10 && player.getMorale() == 100)
+	if (storyProgress == 10 && player.getMorale() >= 100)
 	{
 		//starts the true final boss and will trigger the true ending
 	}
@@ -207,13 +216,13 @@ void Events::explore()
 {
 	ui.messageBox("You travel deeper into the unknown...");
 	int eventRoll = std::rand() % 100;
-	if (eventRoll < 60)
+	if (eventRoll < 75)
 	{
 		// This will trigger an enemy and start to fight
 		Monster monster = createRandomMonster();
 		battle(monster);
 	}
-	else if (eventRoll < 85)
+	else 
 	{
 	
 		StoryEvents();
@@ -260,7 +269,7 @@ void Events::battle(Monster enemy)
 		std::cout << "\nYou defeated " << enemy.getName() << "!\n";
 		std::cout << "\n";
 		std::cout << "EXP +" << reward << "   Gold +" << reward << "\n";
-		player.setMorale(player.getMorale() - 20);
+	
 
 		while (player.getExperience() >= player.getLevel() * 100)
 		{
@@ -332,14 +341,14 @@ void Events::battleEvent(Monster enemy)
 
 void Events::playersTurn(Monster& enemy)
 {
-	std::vector<std::string> actions = { "Attack", "Power Strike (15 MP)", "Heal", "Check Monster Stats", "Use Item" };
+	std::vector<std::string> actions = { "Attack", "Power Strike (15 MP)", "Heal (10 MP)", "Check Monster Stats", "Use Item", "Flee"};
 	int choice = ui.DisplayMenuAndPromptUserWithoutClearing("What will you do?", actions);
 
 	int damage = 0;
 	int crit = 1;
 	int critPercent = (std::rand() % 100) ;
 
-	if (critPercent == 20) { crit = 2;}
+	if (critPercent <= 19) { crit = 2;}
 
 	switch (choice)
 	{
@@ -374,6 +383,9 @@ void Events::playersTurn(Monster& enemy)
 		showMonsterStats(enemy);
 		break;
 	case 5:
+		break;
+	case 6:
+
 		break;
 	default:
 		break;
@@ -425,8 +437,8 @@ void Events::StoryEvents()
 
 			int gold = player.getMoney() + std::rand() % 1000;
 			player.setMoney(gold);
-			player.setMorale(20);
-			storyProgress++;
+			player.setMorale(player.getMorale() + 20);
+			storyProgress = storyProgress + 2;
 
 			ui.messageBox("She gave you some gold... How nice");
 		}

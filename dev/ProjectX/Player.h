@@ -1,10 +1,20 @@
 #pragma once
-#include <string>
 #include "characterTypes.h"
+#include "Item.h"
+#include <vector>
+#include
+
+struct InventorySlot
+{
+    Item item;
+    int quantity;
+};
 
 class Player
 {
 private:
+
+    std::vector<InventorySlot> inventory;
     std::string name;
     int money;
     characterTypes characterType;
@@ -63,6 +73,10 @@ public:
 
     bool levelUP();
 	
+    void addItem(const Item& item, int qty = 1);
+    bool removeItem(const std::string& itemName, int qty = 1);
+    bool hasItem(const std::string& itemName) const;
+    const std::vector<InventorySlot>& getInventory() const;
 
 
 };

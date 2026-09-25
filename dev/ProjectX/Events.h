@@ -3,11 +3,14 @@
 #include "Player.h"
 #include <random>
 #include "Monster.h"
+#include "Shop.h"
 class Events
 {
 private:
 
 	UI ui;
+
+	
 
 	Player player;
 	

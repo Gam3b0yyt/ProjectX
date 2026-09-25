@@ -95,3 +95,40 @@ bool Player::levelUP()
     fullRestore();
     return true;
 }
+
+void Player::addItem(const Item& item, int qty)
+{
+    for (auto& slot : inventory)
+    {
+        if (slot.item.name == item.name)
+        {
+            slot.quantity += qty;
+            return;
+        }
+    }
+    inventory.push_back({ item, qty });
+}
+
+bool Player::removeItem(const std::string& itemName, int qty)
+{
+    for (auto it = inventory.begin(); it != inventory.end(); ++it)
+    {
+        if (it->item.name == itemName)
+        {
+            if (it->quantity < qty) return false;
+            it->quantity -= qty;
+            if (it->quantity <= 0) inventory.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Player::hasItem(const std::string& itemName) const
+{
+    for (const auto& slot : inventory)
+        if (slot.item.name == itemName) return true;
+    return false;
+}
+
+const std::vector<InventorySlot>& Player::getInventory() const { return inventory; }
