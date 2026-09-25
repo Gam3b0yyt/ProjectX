@@ -2,7 +2,7 @@
 #include "characterTypes.h"
 #include "Item.h"
 #include <vector>
-#include
+#include <fstream>
 
 struct InventorySlot
 {
@@ -78,6 +78,8 @@ public:
     bool hasItem(const std::string& itemName) const;
     const std::vector<InventorySlot>& getInventory() const;
 
+    void saveToFile(std::ofstream& file) const;
+    void loadFromFile(std::ifstream& file);
 
 };
 

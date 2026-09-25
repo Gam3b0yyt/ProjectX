@@ -48,6 +48,7 @@ void Events::mainMenu()
 			newGame();
 			break;
 		case 2: // Loads the save file 
+			loadGame();
 			break;
 		case 3: // Goes to the settings Menu
 			settings();
@@ -160,8 +161,14 @@ void Events::gameMenu()
 			break;
 		}
 		case 3: // Save game (FOR LATER)
-
+		{
+			ui.messageBox("You feel...");
+			ui.messageBox("something...");
+			ui.messageBox("You're filled with determination.");
+			player.fullRestore();
+			saveGame();
 			break;
+		}
 		case 4: // Stats
 		{
 			showStats();
@@ -576,5 +583,43 @@ void Events::StoryEvents()
 
 
 	}
+}
+
+void Events::saveGame()
+{
+	std::ofstream file("save.dat");
+	if (!file)
+	{
+		std::cout << "Could not create save file.\n";
+		ui.pause();
+		return;
+	}
+
+	player.saveToFile(file);
+	file << storyProgress << "\n";
+
+	file.close();
+	std::cout << "Game saved!\n";
+	ui.pause();
+}
+
+void Events::loadGame()
+{
+	std::ifstream file("save.dat");
+	if (!file)
+	{
+		std::cout << "No save file found.\n";
+		ui.pause();
+		return;
+	}
+
+	player.loadFromFile(file);
+
+	std::string line;
+	std::getline(file, line);
+	storyProgress = std::stoi(line);
+
+	file.close();
+	gameMenu();
 }
 

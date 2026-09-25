@@ -50,5 +50,9 @@ public:
 	void showMonsterStats(Monster enemy);
 
 	void StoryEvents();
+
+	void saveGame();
+	void loadGame();
+
 };
 
