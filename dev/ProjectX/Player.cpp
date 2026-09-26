@@ -12,10 +12,10 @@ Player::Player()
     health = 100;
     maxMana = 50;
     mana = 50;
-    attack = 15;
-    defense = 5;
+    attack = 13;
+    defense = 7;
 
-    morale = 0;
+    morale = 100;
 
 
 }
@@ -94,4 +94,79 @@ bool Player::levelUP()
     defense += 2;
     fullRestore();
     return true;
+}
+
+void Player::addItem(const Item& item, int qty)
+{
+    for (auto& slot : inventory)
+    {
+        if (slot.item.name == item.name)
+        {
+            slot.quantity += qty;
+            return;
+        }
+    }
+    inventory.push_back({ item, qty });
+}
+
+bool Player::removeItem(const std::string& itemName, int qty)
+{
+    for (auto it = inventory.begin(); it != inventory.end(); ++it)
+    {
+        if (it->item.name == itemName)
+        {
+            if (it->quantity < qty) return false;
+            it->quantity -= qty;
+            if (it->quantity <= 0) inventory.erase(it);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Player::hasItem(const std::string& itemName) const
+{
+    for (const auto& slot : inventory)
+        if (slot.item.name == itemName) return true;
+    return false;
+}
+
+const std::vector<InventorySlot>& Player::getInventory() const { return inventory; }
+
+void Player::saveToFile(std::ofstream& file) const
+{
+	file << name << "\n";
+	file << money << "\n";
+	file << static_cast<int>(characterType) << "\n";
+	file << level << "\n";
+	file << experience << "\n";
+	file << health << "\n";
+	file << mana << "\n";
+	file << attack << "\n";
+	file << defense << "\n";
+	file << maxHealth << "\n";
+	file << maxMana << "\n";
+	file << morale << "\n";
+
+
+
+}
+
+void Player::loadFromFile(std::ifstream& file)
+{
+	std::string line;
+
+	std::getline(file, name);
+	std::getline(file, line); money = std::stoi(line);
+	std::getline(file, line); characterType = static_cast<characterTypes>(std::stoi(line));
+	std::getline(file, line); level = std::stoi(line);
+	std::getline(file, line); experience = std::stoi(line);
+	std::getline(file, line); health = std::stoi(line);
+	std::getline(file, line); mana = std::stoi(line);
+	std::getline(file, line); attack = std::stoi(line);
+	std::getline(file, line); defense = std::stoi(line);
+	std::getline(file, line); maxHealth = std::stoi(line);
+	std::getline(file, line); maxMana = std::stoi(line);
+	std::getline(file, line); morale = std::stoi(line);
+
 }

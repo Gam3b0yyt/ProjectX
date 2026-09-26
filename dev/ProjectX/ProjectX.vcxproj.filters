@@ -33,6 +33,12 @@
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Shop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -56,5 +62,43 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shop.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tracks.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\Aidan%27s Theme.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Brother%27s Theme.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Heart Byte Queen.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Kris%27s Theme.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Lynx%27s Theme.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Once upon a Time.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Ruby Overdrive.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
+    <Media Include="Music\Silver Circuit Saint.wav">
+      <Filter>Resource Files</Filter>
+    </Media>
   </ItemGroup>
 </Project>
