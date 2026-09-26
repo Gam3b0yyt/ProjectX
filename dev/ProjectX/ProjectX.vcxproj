@@ -139,6 +139,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Events.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio.h" />
     <ClInclude Include="characterTypes.h" />
     <ClInclude Include="Events.h" />
     <ClInclude Include="Game.h" />
@@ -156,7 +158,18 @@
     <ClInclude Include="monsterTypes.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Tracks.h" />
     <ClInclude Include="UI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Music\Aidan%27s Theme.wav" />
+    <Media Include="Music\Brother%27s Theme.wav" />
+    <Media Include="Music\Heart Byte Queen.wav" />
+    <Media Include="Music\Kris%27s Theme.wav" />
+    <Media Include="Music\Lynx%27s Theme.wav" />
+    <Media Include="Music\Once upon a Time.wav" />
+    <Media Include="Music\Ruby Overdrive.wav" />
+    <Media Include="Music\Silver Circuit Saint.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

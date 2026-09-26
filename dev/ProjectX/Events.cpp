@@ -3,6 +3,7 @@
 
 void Events::Intro()
 {
+	sound.playTitleMusic();
 	ui.messageBox("|| Long ago... In a world like no other... ||", 20);
 	ui.messageBox("|| There were two brothers who lived in harmony ||", 20);
 	ui.messageBox("|| But when their father died, everything changed ||", 20);
@@ -17,6 +18,7 @@ void Events::Intro()
 
 void Events::Title()
 {
+	sound.playTitleMusic();
 	ui.clearScreenForGame();
 	std::cout << "====================================\n";
 	std::cout << "          PROJECT X: RPG             \n";
@@ -28,6 +30,7 @@ void Events::Title()
 
 void Events::mainMenu()
 {
+	sound.playTitleMusic();
 	std::vector<std::string> mainMenuChoices = {
 		"New Game", "Load Game", "Credits", "Exit"
 	};
@@ -128,6 +131,7 @@ void Events::newGame()
 
 void Events::gameMenu()
 {
+	sound.playExploreMusic();
 	bool inGame = true;
 	std::vector<std::string> choices = { "Explore", "Shop", "Save Game", "Status", "Return to Main Menu" };
 
@@ -371,6 +375,7 @@ Monster Events::createRandomMonster() const
 
 void Events::battle(Monster enemy)
 {
+	sound.playRandomEnemySong();
 	while (player.isAlive() == true && enemy.isAlive() == true)
 	{
 		ui.clearScreenForGame();
@@ -390,6 +395,7 @@ void Events::battle(Monster enemy)
 	
 	}
 	
+	sound.playExploreMusic();
 	if (player.isAlive() == true)
 	{
 		int reward = enemy.getExperienceReward();
@@ -654,6 +660,7 @@ void Events::StoryEvents()
 			ui.messageBoxWithCharacterName("Old Lady", "You young fellows are all the same", 45);
 			ui.messageBoxWithCharacterName("Old Lady", "I'll show you what happens when you don't help your elderly", 35);
 			ui.messageBoxWithCharacterName("Old Lady", "||She began to transform||", 45);
+			sound.playRandomEnemySong();
 			Monster monster = Monster("Celestial Dragon", monsterType::CELESTIAL, 250, 25, 50, 300);
 			battleEvent(monster);
 			player.setMorale(-20);
@@ -683,6 +690,7 @@ void Events::StoryEvents()
 			ui.messageBox("|| You take what the trap already caught for you. ||", 5);
 			player.setMoney(player.getMoney() + 80);
 
+			sound.playRandomEnemySong();
 			Monster monster = Monster("Enraged Dire Wolf", monsterType::BEAST, 180, 18, 35, 220);
 			battleEvent(monster);
 			player.setMorale(-20);
@@ -716,6 +724,7 @@ void Events::StoryEvents()
 		{
 			ui.messageBox("|| The dryad's bark splits into something far less patient. ||", 15);
 
+			sound.playRandomEnemySong();
 			Monster monster = Monster("Blighted Treant", monsterType::PLANT, 260, 26, 48, 280);
 			battleEvent(monster);
 			player.setMorale(-20);
@@ -749,6 +758,8 @@ void Events::StoryEvents()
 		{
 			ui.messageBox("|| The shrine roars upward, furious. ||", 35);
 
+
+			sound.playRandomEnemySong();
 			Monster monster = Monster("Wrathful Ember Elemental", monsterType::ELEMENTAL, 300, 32, 58, 340);
 			battleEvent(monster);
 			player.setMorale(-20);
@@ -778,6 +789,7 @@ void Events::StoryEvents()
 		{
 			ui.messageBox("|| The ground splits before you can finish digging. ||", 15);
 
+			sound.playRandomEnemySong();
 			Monster monster = Monster("Vengeful Spirit", monsterType::UDEAD, 200, 30, 30, 260);
 			battleEvent(monster);
 			player.setMorale(-20);
@@ -837,12 +849,14 @@ void Events::finalBoss()
 	ui.messageBoxWithCharacterName("Onyx", "Seems like you didn't die after I threw you away from this kingdom.", 20);
 	ui.messageBoxWithCharacterName("Onyx", "You made a big mistake coming here...", 30);
 	ui.messageBoxWithCharacterName("Onyx", "Now you will face my wrath!", 100);
+	sound.playOnyxTheme();
 	Monster boss = Monster("Onyx", monsterType::CELESTIAL, 350, 42, 60, 1500);
 	battleEvent(boss);
 }
 
 void Events::finalBossWithTrueEnding()
 {
+	sound.playDarkGaiaTheme();
 	Monster boss = Monster("Dark Gaia", monsterType::CELESTIAL, 400, 42, 60, 2000);
 	battleEvent(boss);
 }

@@ -4,13 +4,14 @@
 #include <random>
 #include "Monster.h"
 #include "Shop.h"
+#include "Audio.h"
 class Events
 {
 private:
 
 	UI ui;
 
-	
+	Audio sound;
 
 	Player player;
 	
