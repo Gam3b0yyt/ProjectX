@@ -72,4 +72,19 @@ Fixed a crash bug where typing a non-numeric character into any menu would throw
 
 ### Week 4
 
-My final stand up...
+**⚙️ Overview**  
+This final week I completed the shop and inventory system, save/load functionality, a final boss fight with three distinct endings, a typewriter dialogue effect, and background music tied to specific scenes and bosses. The game now has a full start-to-finish loop.
+<br>
+**🛠️ Project Wrap-Up**  
+Combat, exploration, story events, the shop, save/load, and the ending sequence are all connected through `storyProgress` and player morale, so choices made early in a run affect which ending is reachable. Dialogue now scrolls with the typewriter effect instead of printing instantly, and each major scene has its own music track.
+<br>
+**🌵 Challenges**  
+wiring storyProgress and morale together so the final boss check felt earned rather than arbitrary
+<br>
+
+**📚 Biggest Takeaway**  
+how much easier features are to add once you have solid class boundaries in place — Shop and Audio slotted in cleanly because Player and UI already had the right methods to build on
+<br>
+
+**🔮 Future Development**  
+If I continued this project, I'd fix the fact that `std::rand()` so encounters and shop prices are actually deterministic right now rather than random. I'd also finally consolidate the duplicated input-validation logic in `UI.cpp` into one shared helper, and expand the item system with more weapon/armor variety and stackable stat effects.
