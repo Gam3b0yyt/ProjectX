@@ -16,6 +16,14 @@ private:
 	
 	int storyProgress = 0;
 
+	bool oldLadyCheck = false;
+	bool wolfEvent = false;
+	bool rootMoss = false;
+	bool flameCoil = false;
+	bool ghost = false;
+
+	bool AllStoriesDone = false;
+
 	
 
 public:
@@ -23,8 +31,6 @@ public:
 	void Intro();
 
 	void Title();
-
-	void settings();
 
 	void mainMenu();
 
@@ -44,7 +50,7 @@ public:
 
 	void battle(Monster enemy);
 	void battleEvent(Monster enemy);
-	void playersTurn(Monster& enemy);
+	bool playersTurn(Monster& enemy);
 	void monsterTurn(Monster& enemy);
 
 	void showMonsterStats(Monster enemy);
@@ -53,6 +59,15 @@ public:
 
 	void saveGame();
 	void loadGame();
+
+	void finalBoss();
+	void finalBossWithTrueEnding();
+
+	void trueEnding();
+	void neutralEnding();
+	void finalEnding();
+
+	void credits();
 
 };
 

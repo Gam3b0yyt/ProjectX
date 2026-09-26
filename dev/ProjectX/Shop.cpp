@@ -26,11 +26,11 @@ void Shop::open()
 		{
 			player.setMoney(player.getMoney() - chosen.price);
 			player.addItem(chosen);
-			ui.messageBox("Bought " + chosen.name + "!");
+			ui.messageBox("Bought " + chosen.name + "!", 5);
 		}
 		else
 		{
-			ui.messageBox("You don't have enough gold.");
+			ui.messageBox("You don't have enough gold.", 5);
 		}
 	}
 }

@@ -16,6 +16,15 @@ void UI::Border()
 	std::cout << "==================================================";
 }
 
+void UI::typeWriterEffect(std::string message, int time)
+{
+	for (int i = 0; i < message.size(); i++) {
+			std::cout << message[i];
+
+			std::this_thread::sleep_for(std::chrono::milliseconds(time));
+		}
+}
+
 int UI::DisplayMenuAndPromptUser(std::string _title, std::vector<std::string>& menuOptions)
 {
 	int choice = 0;
@@ -124,19 +133,34 @@ int UI::DisplayMenuAndPromptUserWithoutClearing(std::string _title, std::vector<
 	return choice;
 }
 
-void UI::messageBox(std::string message)
+void UI::messageBox(std::string message, int speed)
 {
 	ClearScreen();
 	Border();
 	std::cout << "\n";
 	std::cout << "\n";
-	std::cout << message << std::endl;
+	typeWriterEffect(message, speed);
 	std::cout << "\n";
 	std::cout << "\n";
 	Border();
 	std::cout << "\n";
 	PressEnterToContinue();
 
+}
+
+void UI::messageBoxWithCharacterName(std::string CharacterName, std::string message, int speed)
+{
+	ClearScreen();
+	Border();
+	std::cout << "\n";
+	std::cout << "\n";
+	std::cout << CharacterName << ": ";
+	typeWriterEffect(message, speed);
+	std::cout << "\n";
+	std::cout << "\n";
+	Border();
+	std::cout << "\n";
+	PressEnterToContinue();
 }
 
 void UI::clearScreenForGame()

@@ -12,10 +12,10 @@ Player::Player()
     health = 100;
     maxMana = 50;
     mana = 50;
-    attack = 15;
-    defense = 5;
+    attack = 13;
+    defense = 7;
 
-    morale = 0;
+    morale = 100;
 
 
 }
