@@ -167,7 +167,7 @@ void Events::gameMenu()
 			{
 				player.fullRestore();
 				saveGame();
-				
+				break;
 			}
 			case 2:
 			{
@@ -290,15 +290,83 @@ void Events::explore()
 
 Monster Events::createRandomMonster() const
 {
-	
-	switch (std::rand() % 5)
+	struct MonsterTemplate
 	{
-	case 0: return Monster("Forest Slime", monsterType::BEAST, 45, 9, 2, 30);
-	case 1: return Monster("Goblin", monsterType::BEAST, 60, 12, 4, 40);
-	case 2: return Monster("Dark Plant", monsterType::PLANT, 70, 13, 5, 50);
-	case 3: return Monster("Fire Elemental", monsterType::ELEMENTAL, 85, 16, 6, 65);
-	default: return Monster("Fallen Celestial", monsterType::CELESTIAL, 100, 18, 8, 80);
+		std::string name;
+		monsterType type;
+		int hp, atk, def, exp;
+	};
+
+	int lvl = player.getLevel();
+
+	// Levels 1-5
+	static const std::vector<MonsterTemplate> tier1 = {
+		{ "Forest Slime", monsterType::BEAST,     45, 9,  2, 30 },
+		{ "Goblin",        monsterType::BEAST,     60, 12, 4, 40 },
+		{ "Dark Plant",    monsterType::PLANT,     70, 13, 5, 50 },
+		{ "Fire Sprite",   monsterType::ELEMENTAL, 55, 11, 3, 35 }
+	};
+
+	// Levels 6-10
+	static const std::vector<MonsterTemplate> tier2 = {
+		{ "Dire Wolf",       monsterType::BEAST,     95,  15, 6, 55 },
+		{ "Bog Horror",      monsterType::PLANT,     110, 17, 7, 65 },
+		{ "Fire Elemental",  monsterType::ELEMENTAL, 120, 19, 8, 75 },
+		{ "Restless Spirit", monsterType::UDEAD,     100, 16, 5, 60 }
+	};
+
+	// Levels 11-15
+	static const std::vector<MonsterTemplate> tier3 = {
+		{ "Stone Golem",       monsterType::ELEMENTAL, 160, 22, 14, 110 },
+		{ "Thornback Treant",  monsterType::PLANT,     150, 20, 12, 100 },
+		{ "Vampire Bat Swarm", monsterType::UDEAD,     140, 24, 10, 105 },
+		{ "Fallen Celestial",  monsterType::CELESTIAL, 155, 23, 13, 115 }
+	};
+
+	// Levels 16-20
+	static const std::vector<MonsterTemplate> tier4 = {
+		{ "Young Dragon",    monsterType::DRAGON,    220, 30, 18, 160 },
+		{ "Ancient Lich",    monsterType::UDEAD,     200, 28, 16, 150 },
+		{ "Storm Elemental", monsterType::ELEMENTAL, 210, 29, 17, 155 },
+		{ "Seraph Guardian", monsterType::CELESTIAL, 215, 29, 19, 165 }
+	};
+
+	std::vector<MonsterTemplate> pool;
+
+	if (lvl >= 1 && lvl <= 5)
+	{
+		pool = tier1;
 	}
+	else if (lvl >= 6 && lvl <= 10)
+	{
+		pool = tier2;
+	}
+	else if (lvl >= 11 && lvl <= 15)
+	{
+		pool = tier3;
+	}
+	else if (lvl >= 16 && lvl <= 20)
+	{
+		pool = tier4;
+	}
+	else // level 21+: every monster you've unlocked so far is in play
+	{
+		pool.insert(pool.end(), tier1.begin(), tier1.end());
+		pool.insert(pool.end(), tier2.begin(), tier2.end());
+		pool.insert(pool.end(), tier3.begin(), tier3.end());
+		pool.insert(pool.end(), tier4.begin(), tier4.end());
+	}
+
+	const MonsterTemplate& t = pool[std::rand() % pool.size()];
+
+	int levelBonus = lvl - 1; // one continuous growth curve, so no tier ever "resets"
+
+	int hp = t.hp + levelBonus * 15;
+	int attack = t.atk + levelBonus * 3;
+	int defense = t.def + levelBonus * 2;
+	int exp = t.exp + levelBonus * 10;
+
+	return Monster(t.name, t.type, hp, attack, defense, exp);
 }
 
 void Events::battle(Monster enemy)
@@ -461,8 +529,38 @@ bool Events::playersTurn(Monster& enemy)
 	case 4: 
 		showMonsterStats(enemy);
 		break;
-	case 5:
+	case 5: // Use Item
+	{
+		ui.clearScreenForGame();
+		const auto& inv = player.getInventory();
+
+		std::vector<std::string> options;
+		for (const auto& slot : inv)
+			options.push_back(slot.item.name + " x" + std::to_string(slot.quantity));
+
+		if (options.empty())
+		{
+			std::cout << "You have no items.\n";
+			break;
+		}
+
+		int itemChoice = ui.DisplayMenuAndPromptUserWithoutClearing("Use which item?", options);
+		const Item& chosen = inv[itemChoice - 1].item;
+
+		if (chosen.healthRestore > 0)
+		{
+			player.heal(chosen.healthRestore);
+			std::cout << "You use " << chosen.name << " and restore " << chosen.healthRestore << " HP.\n";
+		}
+		if (chosen.manaRestore > 0)
+		{
+			player.setMana(std::min(player.getMaxMana(), player.getMana() + chosen.manaRestore));
+			std::cout << "You use " << chosen.name << " and restore " << chosen.manaRestore << " MP.\n";
+		}
+
+		player.removeItem(chosen.name, 1);
 		break;
+	}
 	case 6:
 	{
 		int escapeChance = std::rand() % 100;
@@ -480,10 +578,11 @@ bool Events::playersTurn(Monster& enemy)
 		break;
 	}
 	default:
-		break;
+			break;
+		}
+		ui.pause();
+		return false;
 	}
-	ui.pause();
-}
 
 void Events::monsterTurn(Monster& enemy)
 {
